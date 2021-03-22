@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de mes demandes{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .nb { text-align: center }
+    .title { text-align: center }
+    
+</style>
+
+{% for utilisateur in utilisateurs %}
+    {% if utilisateur.identifiant == app.user.identifiant %}
+            {% if utilisateur.identifiant == app.user.identifiant %}
+                <h2 class="title">Voici la liste de vos demandes :</h2>
+                <p class="nb">Nombre de vos demandes : {{demandes|length}}<p>
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Numéro de demande</th>
+                            <th>Date de demande</th>
+                            <th>Heure de début</th>
+                            <th>Etat</th>
+                        </tr>
+                    </thead>
+                {% for demande in demandes %}
+                <thead class="thead-light">
+                    <tr>
+                        <th>{{demande.id}} </th>
+                        <th>{{demande.datedemande|date('Y-m-d')}} </th>
+                        <th>{{demande.heuredemande|date('H:m:s')}} </th>
+                        <th>{{demande.etat}} </th>
+                    </tr>
+                {% endfor %}
+                </thead>
+            {% endif %}
+
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre compte{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .card{
+        margin-left: auto;
+        margin-right: auto;
+        background: rgb(180, 180, 180,0.4);
+        max-width: 50em;
+    }
+    .card-title{
+        text-align: center
+    }
+    .card-text{
+        text-align: center
+    }
+    .btn{
+        margin-left: auto;
+        margin-right: auto;
+        width: 6em
+    }
+    .website-title{
+        text-align: center
+    }
+</style>
+<h1 class="website-title"> Hopital Jean Macé </h1>
+<div class="card" style="width: 25em;">
+  <img class="card-img-top" src="img\Microsoft_Account.svg.png" alt="Card image cap">
+  <div class="card-body">
+  {% if is_granted('ROLE_PATIENT') %}
+        <h3 class="card-title">Patient</h5>
+  {% endif %}
+  {% if is_granted('ROLE_ASSISTANT') %}
+        <h3 class="card-title">Assistant</h5>
+  {% endif %}
+  {% if is_granted('ROLE_MEDECIN') %}
+        <h3 class="card-title">Medecin</h5>
+  {% endif %}
+    <h5 class="card-title">Identifiant : {{ app.user.identifiant }}</h5>
+    {% for utilisateur in utilisateurs %}
+        {% if utilisateur.identifiant == app.user.identifiant %}
+            <p class="card-text">Prénom : {{utilisateur.getPatient().prenom}}</p>
+            <p class="card-text">Nom : {{utilisateur.getPatient().nom}}</p>
+            <p class="card-text">Adresse : {{utilisateur.getPatient().adresse}}</p>
+        {% endif %}
+    {% endfor %}
+    <p class="card-text">Email : {{ app.user.email }}</p>
+    <div class="text-center">
+        <a href="#" class="btn btn-primary">Modifier</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

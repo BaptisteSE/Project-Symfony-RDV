@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+		<link href="{{ asset('bundle/myBundle/css/stylesheet.css') }}" type="text/css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">{% endblock %}
+
+    </head>
+    <body>
+    <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg navbar-dark bg-primary">
+
+
+            <a class="navbar-brand" href="principal">
+                <img src="img\panohopital.jpg" style="width:50px;height:60 class="d-inline-block align-top" alt="">Jean Macé
+            </a>
+            <ul class="navbar-nav">
+            <li class="nav-item active"> <a class="nav-link" href="principal">Page d'accueil </a> </li>
+            </ul>
+            {% if is_granted('ROLE_USER') %}
+            {% else %}
+            
+            <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active"> <a class="nav-link" href="register">Inscription </a> </li>
+            <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active"> <a class="nav-link" href="login">Connexion </a> </li>
+            </ul>
+            {% endif %}
+            {% if is_granted('ROLE_PATIENT') %}
+            <ul class="navbar-nav">
+            <li class="nav-item active"> <a class="nav-link" href="demande">Demande de rendez-vous </a> </li>
+            </ul>
+            <ul class="navbar-nav">
+            <li class="nav-item active"> <a class="nav-link" href="listedemandes">Liste de mes demandes</a> </li>
+            </ul>
+            {% endif %}
+           
+            
+            {% if is_granted('ROLE_USER') %}
+            <ul class="nav navbar-nav ml-auto">
+             <a href="compte">
+                <img src="img\img_568656.png" style="width:50px;height:60 class="d-inline-block align-top" alt="">
+            </a>
+            <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active"> <a class="nav-link" href="compte">Mon compte : {{ app.user.identifiant }}</a> </li>
+            <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active"> <a class="nav-link" href="logout">Se déconnecter</a> </li>
+            </ul>
+            {% endif %}
+
+    </nav>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
