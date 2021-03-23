@@ -17,7 +17,6 @@
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Numéro de demande</th>
                             <th>Date de demande</th>
                             <th>Heure de début</th>
                             <th>Etat</th>
@@ -26,7 +25,6 @@
                 {% for demande in patient.demandes %}
                 <thead class="thead-light">
                     <tr>
-                        <th>{{demande.id}} </th>
                         <th>{{demande.datedemande|date('d-m-Y')}} </th>
                         <th>{{demande.heuredemande|date('H:i')}} </th>
                         <th>{{demande.etat}} </th>
