@@ -11,11 +11,9 @@
     
 </style>
 
-{% for utilisateur in utilisateurs %}
-    {% if utilisateur.identifiant == app.user.identifiant %}
-            {% if utilisateur.identifiant == app.user.identifiant %}
+
                 <h2 class="title">Voici la liste de vos demandes :</h2>
-                <p class="nb">Nombre de vos demandes : {{demandes|length}}<p>
+                <p class="nb">Nombre de vos demandes : {{patient.demandes|length}} pour {{ patient.nom }} {{ patient.prenom }}<p>
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
@@ -25,20 +23,16 @@
                             <th>Etat</th>
                         </tr>
                     </thead>
-                {% for demande in demandes %}
+                {% for demande in patient.demandes %}
                 <thead class="thead-light">
                     <tr>
                         <th>{{demande.id}} </th>
-                        <th>{{demande.datedemande|date('Y-m-d')}} </th>
-                        <th>{{demande.heuredemande|date('H:m:s')}} </th>
+                        <th>{{demande.datedemande|date('d-m-Y')}} </th>
+                        <th>{{demande.heuredemande|date('H:i')}} </th>
                         <th>{{demande.etat}} </th>
                     </tr>
                 {% endfor %}
                 </thead>
-            {% endif %}
-
-    {% endif %}
-{% endfor %}
 
 
 {% endblock %}

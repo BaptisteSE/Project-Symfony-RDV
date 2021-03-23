@@ -18,8 +18,12 @@
     .btn{
         text-align: center
     }
+    .nomDuPatient{
+        text-align: center
+    }
 </style>
 <h1 class="title-demande">Demande de rendez-vous</h1>
+<p class="nomDuPatient">Pour {{ lepatient.getNom() }} </p>
 <div class="card" style="width: 25em;">
     {{ form_start(form) }}
     {{ form_widget(form) }}
