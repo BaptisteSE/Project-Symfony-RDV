@@ -43,9 +43,11 @@
     <h5 class="card-title">Identifiant : {{ app.user.identifiant }}</h5>
     {% for utilisateur in utilisateurs %}
         {% if utilisateur.identifiant == app.user.identifiant %}
+            {% if utilisateur.getPatient() %}
             <p class="card-text">Prénom : {{utilisateur.getPatient().prenom}}</p>
             <p class="card-text">Nom : {{utilisateur.getPatient().nom}}</p>
             <p class="card-text">Adresse : {{utilisateur.getPatient().adresse}}</p>
+            {% endif %}
         {% endif %}
     {% endfor %}
     <p class="card-text">Email : {{ app.user.email }}</p>
